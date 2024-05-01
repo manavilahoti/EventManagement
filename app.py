@@ -60,8 +60,6 @@ def renderAdmin():
 
     return render_template('admin.html')    
 
-
-
 @app.route('/eventType',methods=['GET','POST'])
 def getEvents():
     eventTypes = runQuery("SELECT *,(SELECT COUNT(*) FROM participants AS P WHERE T.type_id IN (SELECT type_id FROM events AS E WHERE E.event_id = P.event_id ) ) AS COUNT FROM event_type AS T;") 
@@ -113,7 +111,7 @@ def renderParticipants():
 def runQuery(query):
 
     try:
-        db = mysql.connector.connect( host='localhost',database='event_mgmt',user='root',password='password')
+        db = mysql.connector.connect( host='localhost',database='eventmanagementdb',user='root',password='Imperial@07')
 
         if db.is_connected():
             print("Connected to MySQL, running query: ", query)
